@@ -1,0 +1,92 @@
+<div class="container-fluid createTicket-container px-0">
+    <div class="card w-100 rounded-0">
+        <div class="card-header rounded-0">
+            <div class="row mx-auto">
+                <div class="textHead">
+                    {{title | uppercase}}
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mx-auto">
+                <form name="create" [formGroup]="editTickets"  (ngSubmit)="onUpdate()">
+                    <div class="row mx-auto my-2">
+                        <div class="col-12 col-md-4">
+                            <div class="label">
+                                <span class="lbFnt text-capitalize">
+                                    Ticket Name
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input">
+                                <input type="text" formControlName="ticketName" class="form-control" id="ticketName" placeholder="test 1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-auto my-2">
+                        <div class="col-12 col-md-4">
+                            <div class="label">
+                                <span class="lbFnt text-capitalize">
+                                    display ID
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input">
+                                <input type="text" formControlName="displayId" class="form-control" id="displayId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-auto my-2">
+                        <div class="col-12 col-md-4">
+                            <div class="label">
+                                <span class="lbFnt text-capitalize">
+                                    description
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input">
+                                <textarea class="form-control" formControlName="description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-auto my-2">
+                        <div class="col-12 col-md-4">
+                            <div class="label">
+                                <span class="lbFnt text-capitalize">
+                                    Date Of Creation
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input">
+                                <input type="text" formControlName="dateOfCreation" class="form-control" id="displayId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-auto my-2">
+                        <div class="col-12 col-md-4">
+                            <div class="label">
+                                <span class="lbFnt text-capitalize">
+                                    status
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input">
+                                <select class="form-select" formControlName="status">
+                                    <option value="">Choose your city</option>
+                                    <option class="text-capitalize" *ngFor="let st of statusOptions" [ngValue]="st">{{st}}</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="editTickets.invalid">Register</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
