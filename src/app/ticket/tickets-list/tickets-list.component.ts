@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Tickets } from '../tickets';
 
@@ -10,6 +12,9 @@ import { Tickets } from '../tickets';
 export class TicketsListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['ticketName', 'displayId', 'dateOfCreation', 'description', 'status'];
   dataSource!: MatTableDataSource<Tickets>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
 
   constructor() {
@@ -25,6 +30,6 @@ export class TicketsListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    
+    this.dataSource.paginator = this.paginator;
   }
 }

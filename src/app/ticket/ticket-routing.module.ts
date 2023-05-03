@@ -8,7 +8,8 @@ import { TicketsListComponent } from './tickets-list/tickets-list.component';
 const routes: Routes = [
   {
     path: '',
-    component: TicketComponent
+    redirectTo: 'tickets',
+    pathMatch: 'full'
   },
   {
     path: 'tickets',

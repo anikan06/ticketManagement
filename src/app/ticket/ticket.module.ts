@@ -9,7 +9,7 @@ import { TicketComponent } from './ticket.component';
 import { TicketsListComponent } from './tickets-list/tickets-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -24,7 +24,8 @@ import {MatTableModule} from '@angular/material/table';
     TicketListRoutingModule,
     MatToolbarModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class TicketModule { }

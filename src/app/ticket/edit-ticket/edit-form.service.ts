@@ -3,29 +3,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { pluck, Subject, takeUntil } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EditFormService {
   id: any;
   private _destroyed$ = new Subject<any>();
 
+  constructor(private route: ActivatedRoute) {}
 
-  constructor(private route: ActivatedRoute) { 
-    
-  }
+  getLocalStorageData(id: any, data: any) {
+    let tempId = parseInt(id);
+    let searchdata;
+    console.log(data);
+    searchdata = data.filter((o: any) => o.displayId === tempId);
 
-  getLocalStorageData(id: any) {
-    let temDt = localStorage.getItem("Tickets");
-    if(temDt != null) {
-      let data = JSON.parse(temDt);
-      console.log(data);
-      let searchdata = data.find((o: any) => {
-        console.log(o);
-        console.log(id);
-        parseInt(o.displayId) == parseInt(id);
-      });
-      console.log(searchdata);
-    }
-    
+    return searchdata[0];
   }
 }

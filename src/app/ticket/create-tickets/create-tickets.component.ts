@@ -1,25 +1,26 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Tickets } from '../tickets';
 
 @Component({
   selector: 'app-create-tickets',
   templateUrl: './create-tickets.component.html',
-  styleUrls: ['./create-tickets.component.scss']
+  styleUrls: ['./create-tickets.component.scss'],
 })
-export class CreateTicketsComponent implements OnInit{
-  title: string = 'Create ticket'
+export class CreateTicketsComponent implements OnInit {
+  title: string = 'Create ticket';
   createTickets!: FormGroup;
   statusOptions = ['Open', 'In-progress', 'Complete', 'Deferred'];
   ticketArr: Array<Tickets> = [];
-  
 
-  constructor(private fb: FormBuilder,
-    private router: Router) {
-
-  }
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -27,28 +28,32 @@ export class CreateTicketsComponent implements OnInit{
 
   createForm() {
     const pipe = new DatePipe('en-US');
-    this.createTickets = this.fb.group ({
-      'ticketName': new FormControl('', Validators.required),
-      'displayId': new FormControl({value: Math.floor(100000 * Math.random()), disabled: true}),
-      'description':new FormControl(''),
-      'dateOfCreation': new FormControl({value: pipe.transform(new Date(), 'MM/dd/yyyy'), disabled: true}),
-      'status': new FormControl('', Validators.required)
-    })
+    this.createTickets = this.fb.group({
+      ticketName: new FormControl('', Validators.required),
+      displayId: new FormControl({
+        value: Math.floor(100000 * Math.random()),
+        disabled: true,
+      }),
+      description: new FormControl(''),
+      dateOfCreation: new FormControl({
+        value: pipe.transform(new Date(), 'MM/dd/yyyy'),
+        disabled: true,
+      }),
+      status: new FormControl('', Validators.required),
+    });
   }
 
   onSubmit() {
-    const isDt = localStorage.getItem("Tickets");
-    if(isDt == null) {
+    const isDt = localStorage.getItem('Tickets');
+    if (isDt == null) {
       const newData = [];
       newData.push(this.createTickets.getRawValue());
-      localStorage.setItem("Tickets", JSON.stringify(newData));
+      localStorage.setItem('Tickets', JSON.stringify(newData));
     } else {
       const oldData = JSON.parse(isDt);
       oldData.push(this.createTickets.getRawValue());
-      localStorage.setItem("Tickets", JSON.stringify(oldData));
+      localStorage.setItem('Tickets', JSON.stringify(oldData));
     }
     this.router.navigate(['m/tickets']);
   }
-
-
 }
