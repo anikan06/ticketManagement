@@ -22,18 +22,13 @@
                 <input type="text" placeholder="Daterangepicker" class="form-control" bsDaterangepicker
                   [bsConfig]="{ isAnimated: true }">
               </div>
+              
               <div class="col-12 col-md-3">
-                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Ticket Name...">
+
                 <datalist id="datalistOptions">
-                  <option value="San Francisco">
-                  </option>
-                  <option value="New York">
-                  </option>
-                  <option value="Seattle">
-                  </option>
-                  <option value="Los Angeles">
-                  </option>
-                  <option value="Chicago">
+                  <option *ngFor="let title of localdata" [ngValue]="title">
+                    {{title.ticketName}}
                   </option>
                 </datalist>
               </div>
@@ -83,9 +78,9 @@
     </table>
 
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    <mat-paginator [pageSizeOptions]="[10, 20, 30]"
                  showFirstLastButtons
-                 aria-label="Select page of periodic elements">
+                 aria-label="Select page">
   </mat-paginator>
   </div>
 </div>

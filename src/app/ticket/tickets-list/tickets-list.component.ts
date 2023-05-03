@@ -24,13 +24,16 @@ export class TicketsListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  localdata: any;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const localdata = localStorage.getItem('Tickets');
-    if (localdata != null) {
-      this.dataSource = new MatTableDataSource<Tickets>(JSON.parse(localdata));
+    const lData = localStorage.getItem('Tickets');
+   
+    if (lData != null) {
+      this.localdata = JSON.parse(lData);
+      this.dataSource = new MatTableDataSource<Tickets>(this.localdata);
     }
   }
 
