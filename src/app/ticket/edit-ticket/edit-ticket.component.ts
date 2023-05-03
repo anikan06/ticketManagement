@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Tickets } from '../tickets';
 import { EditFormService } from './edit-form.service';
 
@@ -27,7 +28,8 @@ export class EditTicketComponent {
     private fb: FormBuilder,
     private router: Router,
     private efs: EditFormService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -67,7 +69,19 @@ export class EditTicketComponent {
     this.allTickets.splice(this.allTickets.findIndex((a: any) => a.displayId == this.id), 1); 
     this.allTickets.push(this.editTickets.getRawValue());
     localStorage.setItem('Tickets', JSON.stringify(this.allTickets));
+    this.toastr.success(
+      'Ticket' +
+        ' ' +
+        this.editTickets.getRawValue().ticketName +
+        ' ( Id: ' +
+        this.editTickets.getRawValue().displayId +
+        ' ) ' +
+        'updated successfully'
+    );
+    this.router.navigate(['m/tickets']);
+  }
 
+  cancel() {
     this.router.navigate(['m/tickets']);
   }
 }

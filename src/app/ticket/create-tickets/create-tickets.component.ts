@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Tickets } from '../tickets';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-tickets',
@@ -20,7 +21,11 @@ export class CreateTicketsComponent implements OnInit {
   statusOptions = ['Open', 'In-progress', 'Complete', 'Deferred'];
   ticketArr: Array<Tickets> = [];
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -54,6 +59,19 @@ export class CreateTicketsComponent implements OnInit {
       oldData.push(this.createTickets.getRawValue());
       localStorage.setItem('Tickets', JSON.stringify(oldData));
     }
+    this.toastr.success(
+      'Ticket' +
+        ' ' +
+        this.createTickets.getRawValue().ticketName +
+        ' ( Id: ' +
+        this.createTickets.getRawValue().displayId +
+        ' ) ' +
+        'created successfully'
+    );
+    this.router.navigate(['m/tickets']);
+  }
+
+  cancel() {
     this.router.navigate(['m/tickets']);
   }
 }

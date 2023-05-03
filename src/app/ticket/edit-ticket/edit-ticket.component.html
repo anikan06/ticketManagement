@@ -7,9 +7,10 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="row mx-auto">
-                <form name="create" [formGroup]="editTickets"  (ngSubmit)="onUpdate()">
+        <form name="create" [formGroup]="editTickets" (ngSubmit)="onUpdate()">
+            <div class="card-body">
+                <div class="row mx-auto">
+
                     <div class="row mx-auto my-2">
                         <div class="col-12 col-md-4">
                             <div class="label">
@@ -20,7 +21,8 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="input">
-                                <input type="text" formControlName="ticketName" class="form-control" id="ticketName" placeholder="test 1">
+                                <input type="text" formControlName="ticketName" class="form-control" id="ticketName"
+                                    placeholder="test 1">
                             </div>
                         </div>
                     </div>
@@ -48,7 +50,9 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="input">
-                                <textarea class="form-control" formControlName="description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                <textarea class="form-control" formControlName="description"
+                                    placeholder="Leave a comment here" id="floatingTextarea2"
+                                    style="height: 100px"></textarea>
                             </div>
                         </div>
                     </div>
@@ -77,16 +81,28 @@
                         <div class="col-12 col-md-4">
                             <div class="input">
                                 <select class="form-select" formControlName="status">
-                                    <option value="">Choose your city</option>
-                                    <option class="text-capitalize" *ngFor="let st of statusOptions" [ngValue]="st">{{st}}</option>
-                                  </select>
+                                    <option value="" [disabled]="true">Status</option>
+                                    <option class="text-capitalize" *ngFor="let st of statusOptions" [ngValue]="st">
+                                        {{st}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" [disabled]="editTickets.invalid">Register</button>
-                </form>
+
+
+                </div>
+
             </div>
-            
-        </div>
+
+            <div class="card-footer bg-white rounded-0 border-0">
+                <div class="row mx-auto d-flex justify-content-end">
+                    <button type="button" class="btn btn-outline-dark btn-sm col-12 col-md-3"
+                        (click)="cancel()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm col-12 col-md-3 mx-2"
+                        [disabled]="editTickets.invalid">Update</button>
+
+                </div>
+
+            </div>
+        </form>
     </div>
-</div>
