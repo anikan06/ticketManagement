@@ -17,7 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -40,6 +40,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatSortModule,
     BsDatepickerModule.forRoot(),
     
   ]
